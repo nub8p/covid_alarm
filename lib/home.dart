@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:covid_alarm/ordering.dart';
+import 'package:covid_alarm/tutorial.dart';
+import 'package:covid_alarm/clockWidget.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -7,10 +9,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int level = 2;
-  String startDate = '2021.10.01';
-  String endDate = '2021.10.17';
-  double today = 30;
 
   void _defultsetting() {
     setState(() {});
@@ -34,46 +32,27 @@ class _HomeState extends State<Home> {
           preferredSize: Size.fromHeight(120),
           child: Container(
             padding: EdgeInsets.only(top: 0, left: 30),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                //MyDropDown(),
-                Text(
-                  '거리두기 $level단계',
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-                SizedBox(height: 10),
-                Text(
-                  '현행 거리두기 시행 기간 : $startDate ~ $endDate',
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.white,
-                  ),
-                ),
-                SizedBox(height: 10),
-                Slider(
-                  value: today,
-                  min: 0.0,
-                  max: 100.0,
-                  label: '${today.round()}',
-                  onChanged: null,
-                ),
-              ],
+            child: HomeAppBarInfo(
+                distancingLevel: 3,
+                startDate: "2021.10.01",
+                endDate: "2021.10.17",
+                today: 30.0
             ),
           ),
         ),
         actions: <Widget>[
-          new IconButton(onPressed: () => {}, icon: Icon(Icons.help_outline)),
           new IconButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Ordering()));
-              },
-              icon: Icon(Icons.settings)),
+            onPressed: () => {
+              Navigator.push(context,
+                MaterialPageRoute(builder: (context) => Tutorial()))
+            },
+            icon: Icon(Icons.help_outline)),
+          new IconButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Ordering()));
+            },
+            icon: Icon(Icons.settings)),
         ],
       ),
       body: Container(
@@ -91,30 +70,27 @@ class _HomeState extends State<Home> {
             //item 의 반목문 항목 형성
             return GestureDetector(
               child: Container(
-                  color: Colors.lightGreen,
-                  child: Text(' Item : $index')
+                //color: Colors.black26,
+                child: SafeArea(
+                  child: ClockIcon(
+                      icon: 'icons/식당카페.png',
+                      title: "식당/카페",
+                      time: 9
+                  ),
+                ),
               ),
               onTap:(){
                 showDialog(
                   context: context,
                   builder: (BuildContext context){
-                    return AlertDialog(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0)
-                      ),
-                      title: Row(
-                        children:[
-                          Image(image: AssetImage("icons/식당카페.png"),
-                            width: 50, height: 50, fit: BoxFit.contain,),
-                          SizedBox(width: 10,),
-                          Text("Item : $index"),
-                        ]
-                      ),
-                      content: SingleChildScrollView(
-                        child: Container(
-                            child: Text("거리두기 지침 거리두기 지침 거리두기 지침 거리두기 지침 거리두기 지침 거리두기 지침 거리두기 지침 거리두기 지침 거리두기 지침 거리두기 지침 거리두기 지침 거리두기 지침 거리두기 지침 거리두기 지침 거리두기 지침 거리두기 지침 거리두기 지침 거리두기 지침 거리두기 지침 거리두기 지침 거리두기 지침 거리두기 지침 거리두기 지침 거리두기 지침 거리두기 지침 거리두기 지침 거리두기 지침 거리두기 지침 거리두기 지침 거리두기 지침 거리두기 지침 거리두기 지침 거리두기 지침 거리두기 지침 거리두기 지침 거리두기 지침 거리두기 지침"),
-                        )
-                      )
+                    return DistancingInfoModal(
+                      image: 'icons/식당카페.png',
+                      title: "식당/카페",
+                      content: "방역패스 의무적용 시설\n"
+                        "운영시간 → 06시 ~ 21시\n"
+                        "이용 가능 → 접종 완료자 등\n"
+                        "취식 가능 여부 → 가능\n"
+                        "21시 ~ 다음날 05시까지 포장/배달만 허용",
                     );
                   }
                 );
@@ -126,6 +102,95 @@ class _HomeState extends State<Home> {
     );
   }
 }
+
+class HomeAppBarInfo extends StatelessWidget {
+  final int distancingLevel;
+  final String startDate;
+  final String endDate;
+  final double today;
+
+  const HomeAppBarInfo({
+    Key? key,
+    required this.distancingLevel,
+    required this.startDate,
+    required this.endDate,
+    required this.today
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          '거리두기 $distancingLevel단계',
+          style: TextStyle(
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        SizedBox(height: 10),
+        Text(
+          '현행 거리두기 시행 기간 : $startDate ~ $endDate',
+          style: TextStyle(
+            fontSize: 12,
+            color: Colors.white,
+          ),
+        ),
+        SizedBox(height: 5),
+        Slider(
+          value: today,
+          min: 0.0,
+          max: 100.0,
+          label: '${today.round()}',
+          onChanged: null,
+        ),
+      ],
+    );
+  }
+}
+
+
+class DistancingInfoModal extends StatelessWidget {
+  final String image;
+  final String title;
+  final String content;
+
+  const DistancingInfoModal({
+    Key? key,
+    required this.image,
+    required this.title,
+    required this.content
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+        insetPadding: EdgeInsets.all(50),
+        contentPadding: EdgeInsets.fromLTRB(30, 10, 30, 30),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0)
+        ),
+        title: Row(
+            children:[
+              Image(image: AssetImage(image),
+                width: 50, height: 50, fit: BoxFit.contain),
+              SizedBox(width: 10,),
+              Text(title),
+            ]
+        ),
+        content: SingleChildScrollView(
+            child: Container(
+              child: Text(content,
+                style: TextStyle(letterSpacing: -1.0),
+              ),
+            )
+        )
+    );
+  }
+}
+
 
 class MyDropDown extends StatefulWidget {
   const MyDropDown({Key? key}) : super(key: key);
@@ -164,4 +229,3 @@ class _MyDrop extends State<MyDropDown> {
     );
   }
 }
-
