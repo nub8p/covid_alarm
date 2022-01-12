@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:covid_alarm/model/GridItem.dart';
 import 'package:reorderable_grid_view/reorderable_grid_view.dart';
 
@@ -34,11 +35,16 @@ GridList? gridList;
 class Ordering extends StatefulWidget {
   const Ordering({Key? key}) : super(key: key);
 
+=======
+
+class Ordering extends StatefulWidget {
+>>>>>>> 310d53f2ba77a70f83cd74ea26bb66bb4d2c5bdc
   @override
   _OrderingState createState() => _OrderingState();
 }
 
 class _OrderingState extends State<Ordering> {
+<<<<<<< HEAD
   final data = List<int>.generate(50, (index) => index);
 
   @override
@@ -46,10 +52,15 @@ class _OrderingState extends State<Ordering> {
 
     gridList = GridList.fromJson(gridItem);
 
+=======
+  @override
+  Widget build(BuildContext context) {
+>>>>>>> 310d53f2ba77a70f83cd74ea26bb66bb4d2c5bdc
     return Scaffold(
       appBar: AppBar(
         title: const Text('아이콘 정렬하기'),
       ),
+<<<<<<< HEAD
       // TODO: Add a grid view (102)
       body: Container(
         padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -80,10 +91,17 @@ class _OrderingState extends State<Ordering> {
               childAspectRatio: 1,
             ),
           ),
+=======
+      body: const Center(
+        child: Text(
+          'ordering icons',
+          style: TextStyle(fontSize: 24),
+>>>>>>> 310d53f2ba77a70f83cd74ea26bb66bb4d2c5bdc
         ),
       ),
     );
   }
+<<<<<<< HEAD
 
   Widget buildItem(int index) {
     return Card(
@@ -91,4 +109,6 @@ class _OrderingState extends State<Ordering> {
       child: Image.asset(gridList!.list!.elementAt(index).image!,),
     );
   } //Text(data[index].toString()), Image(image:AssetImage('assets/images/1_cafe.png')),
+=======
+>>>>>>> 310d53f2ba77a70f83cd74ea26bb66bb4d2c5bdc
 }

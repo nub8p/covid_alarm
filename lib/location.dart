@@ -7,7 +7,11 @@ class Location extends StatefulWidget {
 }
 
 class _LocationState extends State<Location> {
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> 310d53f2ba77a70f83cd74ea26bb66bb4d2c5bdc
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -26,7 +30,11 @@ class _LocationState extends State<Location> {
           body: TabBarView(
               children: [
                 new Container(
+<<<<<<< HEAD
                     child: StepCase()
+=======
+                  child: StepCase()
+>>>>>>> 310d53f2ba77a70f83cd74ea26bb66bb4d2c5bdc
                 ),
                 new Container(
                     child: ConfirmedCase()
