@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -31,6 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
 
   final List<Widget> _children = [Home(), Search(), Location()];
+
   void _onTap(int index) {
     setState(() {
       _currentIndex = index;
@@ -40,13 +42,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-          actions: <Widget>[
-            new IconButton(onPressed: () => {}, icon: Icon(Icons.help_outline)),
-            new IconButton(onPressed: () => {}, icon: Icon(Icons.settings)),
-          ],
-        ),
         body: _children[_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
@@ -62,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 title: Text('search'),
               ),
               new BottomNavigationBarItem(
-                icon: Icon(Icons.location_city),
+                icon: Icon(Icons.location_on),
                 title: Text('location'),
               )
             ]));
