@@ -11,6 +11,12 @@ class _LocationState extends State<Location> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+          appBarTheme: AppBarTheme(
+            color: Color(0xff14279B),
+          )
+      ),
       home: DefaultTabController(
         length: 2,
         child: Scaffold(

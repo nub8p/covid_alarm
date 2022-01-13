@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:covid_alarm/ordering.dart';
 import 'package:covid_alarm/tutorial.dart';
-import 'package:covid_alarm/ordering.dart';
 import 'package:covid_alarm/main_icon.dart';
+import 'package:covid_alarm/info.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -10,9 +10,10 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   void _defultsetting() {
-    setState(() {});
+    setState(() {
+
+    });
   }
 
   @override
@@ -43,17 +44,17 @@ class _HomeState extends State<Home> {
         ),
         actions: <Widget>[
           new IconButton(
-            onPressed: () => {
-              Navigator.push(context,
-                MaterialPageRoute(builder: (context) => Tutorial()))
-            },
-            icon: Icon(Icons.help_outline)),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Tutorial()));
+              },
+              icon: Icon(Icons.help_outline)),
           new IconButton(
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Ordering()));
-            },
-            icon: Icon(Icons.settings)),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Ordering()));
+              },
+              icon: Icon(Icons.settings)),
         ],
       ),
       body: Container(
@@ -70,38 +71,34 @@ class _HomeState extends State<Home> {
           children: List.generate(23, (index) {
             //item 의 반목문 항목 형성
             return GestureDetector(
-              child: Container(
-                //color: Colors.black26,
-                child: SafeArea(
-                  child: MainIcon(
-                      title: '식당카페',
-                      icon: Icon(Icons.restaurant),
-                      time: 9,
-                      color: Colors.indigoAccent,
+                child: Container(
+                  //color: Colors.black26,
+                  child: SafeArea(
+                    child: MainIcon(
+                      title: infoList[index]['title'],
+                      icon: Icon(infoList[index]['iconURL']),
+                      time: infoList[index]['time'],
+                      color: Color(infoList[index]['color']),
+                    ),
                   ),
                 ),
-              ),
-              onTap:(){
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context){
-                    return DistancingInfoModal(
-                      image: 'icons/식당카페b.png',
-                      title: "식당/카페",
-                      content: "방역패스 의무적용 시설\n"
-                        "운영시간 → 06시 ~ 21시\n"
-                        "이용 가능 → 접종 완료자 등\n"
-                        "취식 가능 여부 → 가능\n"
-                        "21시 ~ 다음날 05시까지 포장/배달만 허용",
-                    );
-                  }
-                );
-              }
+                onTap:(){
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context){
+                        return DistancingInfoModal(
+                          image: 'icons/식당카페b.png',
+                          title: infoList[index]['title'],
+                          content: infoList[index]['info'],
+                        );
+                      }
+                  );
+                }
             );
           }),
         ),
       )
-    );
+  );
   }
 }
 
@@ -231,3 +228,20 @@ class _MyDrop extends State<MyDropDown> {
     );
   }
 }
+
+class ModalIcon extends StatelessWidget {
+  const ModalIcon({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        //margin: EdgeInsets.all(100.0),
+        decoration: BoxDecoration(
+          color: Colors.orange,
+          shape: BoxShape.circle
+        ),
+
+    );
+  }
+}
+
