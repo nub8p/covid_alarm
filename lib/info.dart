@@ -67,7 +67,7 @@ List<Map> infoList = [
         '이용 가능 → 접종 완료자 등\n'
         '취식 가능 여부 → 불가능'},
 
-  {'title': '전시회', 'iconURL': Icons.auto_awesome_mosaic, 'time': 12.0, 'color': 0xff5C7AEA,
+  {'title': '전시회', 'iconURL': Icons.panorama, 'time': 12.0, 'color': 0xff5C7AEA,
     'info': '방역패스 미적용 시설\n'
         '운영시간 → 제한 없음\n'
         '이용 가능 및 밀집도 →\n'
@@ -95,14 +95,14 @@ List<Map> infoList = [
         '이용 가능 → 접종 완료자 등\n'
         '취식 가능 여부 → 불가능'},
 
-  {'title': '놀이공원', 'iconURL': Icons.shopping_cart, 'time': 12.0, 'color': 0xff5C7AEA,
+  {'title': '놀이공원', 'iconURL': Icons.attractions, 'time': 12.0, 'color': 0xff5C7AEA,
     'info': '방역패스 미적용 시설\n'
         '운영시간 → 제한 없음\n'
         '이용 가능 → 제한 없음\n'
         '밀집도 → 수용인원의  50%\n'
         '취식 가능 여부 → 불가능'},
 
-  {'title': '워터파크', 'iconURL': Icons.attractions, 'time': 12.0, 'color': 0xff5C7AEA,
+  {'title': '워터파크', 'iconURL': Icons.pool, 'time': 12.0, 'color': 0xff5C7AEA,
     'info': '방역패스 미적용 시설\n'
         '운영시간 → 제한 없음\n'
         '이용 가능 → 제한 없음\n'
