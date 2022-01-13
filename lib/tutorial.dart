@@ -70,7 +70,11 @@ class TutorialBox extends StatelessWidget {
           SizedBox(height: 20),
           Row(
             children: [
-              Image(image: AssetImage("icons/식당카페.png")),
+              CircleAvatar(
+                radius: 30.0,
+                backgroundColor: Colors.white,
+                backgroundImage: AssetImage('images/clockIcon.png'),
+              ),
               SizedBox(width: 20),
               Text(content, softWrap: true,),
             ],

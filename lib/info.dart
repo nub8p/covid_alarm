@@ -61,13 +61,13 @@ List<Map> infoList = [
         '이용 가능 → 접종 완료자 등\n'
         '취식 가능 여부 → 불가능'},
 
-  {'title': '파티룸', 'iconURL': Icons.cake, 'time': 9.0, 'color': 0xff5C7AEA,
+  {'title': '파티룸', 'iconURL': Icons.cake, 'time': 10.0, 'color': 0xff5C7AEA,
     'info': '방역패스 의무적용 시설\n'
         '운영시간 → 06시 ~22시\n'
         '이용 가능 → 접종 완료자 등\n'
         '취식 가능 여부 → 불가능'},
 
-  {'title': '전시회', 'iconURL': Icons.shopping_cart, 'time': 9.0, 'color': 0xff5C7AEA,
+  {'title': '전시회', 'iconURL': Icons.auto_awesome_mosaic, 'time': 9.0, 'color': 0xff5C7AEA,
     'info': '방역패스 미적용 시설\n'
         '운영시간 → 제한 없음\n'
         '이용 가능 및 밀집도 →\n'

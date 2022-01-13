@@ -13,7 +13,8 @@ class _OrderingState extends State<Ordering> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return WillPopScope(
+        child: Scaffold(
       appBar: AppBar(
         title: const Text('아이콘 정렬하기'),
       ),
@@ -44,7 +45,13 @@ class _OrderingState extends State<Ordering> {
             )
         ),
       ),
+    ),
+        onWillPop: () => _onBackPressed(context),
     );
+  }
+  Future<bool> _onBackPressed(BuildContext context) async {
+    Navigator.pop(context, true);
+    return true;
   }
 
   Widget buildItem(int index) {

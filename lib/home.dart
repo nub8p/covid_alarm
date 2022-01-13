@@ -15,7 +15,7 @@ class _HomeState extends State<Home> {
 
     });
   }
-
+  List _info = infoList;
   @override
   Widget build(BuildContext context) {
     _defultsetting();
@@ -50,9 +50,12 @@ class _HomeState extends State<Home> {
               },
               icon: Icon(Icons.help_outline)),
           new IconButton(
-              onPressed: () {
-                Navigator.push(context,
+              onPressed: () async {
+                bool isBack = await Navigator.push(context,
                     MaterialPageRoute(builder: (context) => Ordering()));
+                if(isBack){
+                  _update();
+                }
               },
               icon: Icon(Icons.settings)),
         ],
@@ -87,7 +90,7 @@ class _HomeState extends State<Home> {
                       context: context,
                       builder: (BuildContext context){
                         return DistancingInfoModal(
-                          image: 'icons/식당카페b.png',
+                          icon: infoList[index]['iconURL'],
                           title: infoList[index]['title'],
                           content: infoList[index]['info'],
                         );
@@ -98,7 +101,12 @@ class _HomeState extends State<Home> {
           }),
         ),
       )
-  );
+    );
+  }
+  void _update(){
+    setState((){
+      _info = infoList;
+    });
   }
 }
 
@@ -152,13 +160,13 @@ class HomeAppBarInfo extends StatelessWidget {
 
 
 class DistancingInfoModal extends StatelessWidget {
-  final String image;
+  final IconData icon;
   final String title;
   final String content;
 
   const DistancingInfoModal({
     Key? key,
-    required this.image,
+    required this.icon,
     required this.title,
     required this.content
   }) : super(key: key);
@@ -173,8 +181,14 @@ class DistancingInfoModal extends StatelessWidget {
         ),
         title: Row(
             children:[
-              Image(image: AssetImage(image),
-                width: 40, height: 40, fit: BoxFit.contain),
+              Container(
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                    color: Color(0xff14279b),
+                    shape: BoxShape.circle
+                ),
+                child: Icon(icon, color: Colors.white, size: 20,),
+              ),
               SizedBox(width: 10,),
               Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
             ]
@@ -228,20 +242,3 @@ class _MyDrop extends State<MyDropDown> {
     );
   }
 }
-
-class ModalIcon extends StatelessWidget {
-  const ModalIcon({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        //margin: EdgeInsets.all(100.0),
-        decoration: BoxDecoration(
-          color: Colors.orange,
-          shape: BoxShape.circle
-        ),
-
-    );
-  }
-}
-
