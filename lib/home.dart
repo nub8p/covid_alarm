@@ -15,7 +15,9 @@ class _HomeState extends State<Home> {
 
     });
   }
+
   List _info = infoList;
+
   @override
   Widget build(BuildContext context) {
     _defultsetting();
@@ -71,33 +73,16 @@ class _HomeState extends State<Home> {
           //수평 Padding
           crossAxisSpacing: 10,
           //수직 Padding
-          children: List.generate(23, (index) {
-            //item 의 반목문 항목 형성
-            return GestureDetector(
-                child: Container(
-                  //color: Colors.black26,
-                  child: SafeArea(
-                    child: MainIcon(
-                      title: infoList[index]['title'],
-                      icon: Icon(infoList[index]['iconURL']),
-                      time: infoList[index]['time'],
-                      color: Color(infoList[index]['color']),
-                    ),
-                  ),
-                ),
-                onTap:(){
-                  showDialog(
-                      context: context,
-                      builder: (BuildContext context){
-                        return DistancingInfoModal(
-                          icon: infoList[index]['iconURL'],
-                          title: infoList[index]['title'],
-                          content: infoList[index]['info'],
-                        );
-                      }
-                  );
-                }
-            );
+          children: List.generate(25, (index) {
+            if(index == 0){ //사적모임
+              return MainIconBox(index: 23);
+            }
+            else if(index == 1){ //행사집회
+              return MainIconBox(index: 24);
+            }
+            else{
+              return MainIconBox(index: index-2);
+            }
           }),
         ),
       )
@@ -107,6 +92,42 @@ class _HomeState extends State<Home> {
     setState((){
       _info = infoList;
     });
+  }
+
+
+
+}
+class MainIconBox extends StatelessWidget {
+  final int index;
+  const MainIconBox({Key? key, required this.index}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+        child: Container(
+          //color: Colors.black26,
+          child: SafeArea(
+            child: MainIcon(
+              title: infoList[index]['title'],
+              icon: Icon(infoList[index]['iconURL']),
+              time: infoList[index]['time'],
+              color: Color(infoList[index]['color']),
+            ),
+          ),
+        ),
+        onTap:(){
+          showDialog(
+              context: context,
+              builder: (BuildContext context){
+                return DistancingInfoModal(
+                  icon: infoList[index]['iconURL'],
+                  title: infoList[index]['title'],
+                  content: infoList[index]['info'],
+                );
+              }
+          );
+        }
+    );
   }
 }
 
