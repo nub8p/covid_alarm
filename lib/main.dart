@@ -3,6 +3,7 @@ import 'package:covid_alarm/home.dart';
 import 'package:covid_alarm/search.dart';
 import 'package:covid_alarm/location.dart';
 
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {

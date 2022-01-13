@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:covid_alarm/ordering.dart';
 import 'package:covid_alarm/tutorial.dart';
-import 'package:covid_alarm/clockWidget.dart';
+import 'package:covid_alarm/ordering.dart';
+import 'package:covid_alarm/main_icon.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -66,16 +67,17 @@ class _HomeState extends State<Home> {
           //수평 Padding
           crossAxisSpacing: 10,
           //수직 Padding
-          children: List.generate(25, (index) {
+          children: List.generate(23, (index) {
             //item 의 반목문 항목 형성
             return GestureDetector(
               child: Container(
                 //color: Colors.black26,
                 child: SafeArea(
-                  child: ClockIcon(
-                      icon: 'icons/식당카페.png',
-                      title: "식당/카페",
-                      time: 9
+                  child: MainIcon(
+                      title: '식당카페',
+                      icon: Icon(Icons.restaurant),
+                      time: 9,
+                      color: Colors.indigoAccent,
                   ),
                 ),
               ),
@@ -84,7 +86,7 @@ class _HomeState extends State<Home> {
                   context: context,
                   builder: (BuildContext context){
                     return DistancingInfoModal(
-                      image: 'icons/식당카페.png',
+                      image: 'icons/식당카페b.png',
                       title: "식당/카페",
                       content: "방역패스 의무적용 시설\n"
                         "운영시간 → 06시 ~ 21시\n"
@@ -175,9 +177,9 @@ class DistancingInfoModal extends StatelessWidget {
         title: Row(
             children:[
               Image(image: AssetImage(image),
-                width: 50, height: 50, fit: BoxFit.contain),
+                width: 40, height: 40, fit: BoxFit.contain),
               SizedBox(width: 10,),
-              Text(title),
+              Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
             ]
         ),
         content: SingleChildScrollView(
